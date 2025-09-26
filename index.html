@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <fieldset>
+                <legend>Agregar nueva tarea</legend>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" placeholder="Título de la tarea">
+
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" placeholder="Descripción de la tarea"></textarea>
+
+                <label for="categoria">Categoría:</label>
+                <select id="categoria">
+                    <option value="entrenar">Entrenar</option>
+                    <option value="estudiar">Estudiar</option>
+                    <option value="jugar">Jugar</option>
+                    <option value="descanso">Descanso</option>
+                    <option value="aseo">Aseo</option>
+                </select>
+
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha">
+
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora">
+
+                <button id="agregar-tarea">Agregar tarea</button>
+            </fieldset>
+        </div>
+
+        <div class="tabla-tareas">
+            <h2>Tabla de Tareas</h2>
+            <table id="tabla-tareas">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las tareas se agregarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+</html>
