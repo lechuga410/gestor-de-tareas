@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iniciar seccion</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <button class="google">
+        <img src="./img/google" alt="Google logo">
+    </button>
+
+    <button class="facebook">
+        <img src="./img/facebook.png" alt="Facebook logo">
+    </button>
+
+    <button class="apple">
+        <img src="./img/apple.png" alt="Apple logo">
+    </button>
+      
+    <div class="container">
+        <h2>iniciar seccion</h2>
+        <form>
+            <input type="user" placeholder="nombre de usuario" autocomplete="off">
+            <input type="email" placeholder="correo electronico" required autocomplete="off">
+            <input type="password" placeholder="contraseña" required autocomplete="off">
+            <a href="forgot.html">¿Olvidaste tu contraseña?</a>
+            <label><input type="checkbox" name="remember"> Recordarme</label>
+        
+            <button type="submit">iniciar seccion</button>
+            <p class="error escondido">Error al iniciar seccion</p>
+        </form>
+        
+        <div class="registrar">
+            <p>¿no tienes una cuenta? <a href="register.html">registrate</a></p>
+        </div>
+    </div>
+<script src="login.js"></script>
+</body>
+</html>

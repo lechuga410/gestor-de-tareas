@@ -1,0 +1,305 @@
+/* login.css - versión minimalista moderna 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #121212;
+}
+
+.container {
+    background: #1E1E1E;
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 360px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.container h2 {
+    margin-bottom: 30px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+form input {
+    width: 100%;
+    padding: 14px 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2A2A2A;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+form input::placeholder {
+    color: #AAAAAA;
+}
+
+form input:focus {
+    outline: none;
+    background: #333333;
+    box-shadow: 0 0 8px #6C63FF;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #6C63FF;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #554fd1;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #6C63FF;
+}
+
+.registrar {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #CCCCCC;
+}
+
+.registrar a {
+    color: #6C63FF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.registrar a:hover {
+    text-decoration: underline;
+    color: #554fd1;
+}
+*/
+/* login.css - estilo premium moderno */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #756e6e, #ffffff);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 50px 35px;
+    border-radius: 20px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.container h2 {
+    color: white;
+    margin-bottom: 35px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+form input {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+form input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+form input:focus {
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px #6C63FF;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #6C63FF, #00BFA6);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.registrar {
+    margin-top: 25px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+}
+
+.registrar a {
+    color: #00FFE5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.registrar a:hover {
+    color: #00BFA6;
+    text-decoration: underline;
+}
+/* Checkbox Recordarme */
+form label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+form label input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #6C63FF; /* color del check */
+    width: 16px;
+    height: 16px;
+}
+
+/* Enlace "Olvidaste tu contraseña" */
+form a {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #00FFE5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+form a:hover {
+    color: #00BFA6;
+    text-decoration: underline;
+}
+
+button.google {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.google:hover {
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+button.google img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain; /* evita distorsión */
+}
+button.facebook,
+button.apple {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 20px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.facebook {
+    top: 90px;
+    background: #1877F2; /* azul oficial Facebook */
+}
+
+button.apple {
+    top: 160px;
+    background: #ffffff; /* negro Apple */
+}
+
+button.facebook img,
+button.apple img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+button.facebook:hover,
+button.apple:hover {
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.erro{
+    color: red;
+}
+.escondido{
+    display: none;
+}
