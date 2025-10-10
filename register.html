@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registrarse</h2>
+        <form id="register-form">
+            
+           <input type="text" id="fullName" name="fullName" placeholder="Nombre completo" required autocomplete="off">
+            <input type="user" id="user" placeholder="nombre de usuario" autocomplete="off">
+            <input type="email" id="email" placeholder="Correo electrónico" required autocomplete="off">
+            <input type="password" id="password" name="password" placeholder="Contraseña" autocomplete="off">
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required autocomplete="off">
+
+            <button type="submit">Crear cuenta</button>
+            <p class="error escondido">Error al Registrarse</p>
+        </form>
+        <div class="registrar">
+            <p>¿Ya tienes cuenta? <a href="index.html">Inicia sesión</a></p>
+        </div>
+    </div>
+<script src="register.js"></script>
+</body>
+</html>

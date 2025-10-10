@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Gestor de Tareas — Profesional</title>
+		<link rel="stylesheet" href="inicio.css">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+	<div class="container">
+		<div class="brand">Gestor de Tareas</div>
+		<div class="top-actions">
+			<input id="search" class="search" type="search" placeholder="Buscar tareas...">
+			<select id="themeSelect" class="search" aria-label="Tema">
+				<option value="default">Tema claro</option>
+				<option value="dark">Tema oscuro</option>
+			</select>
+
+			<!-- User quick menu -->
+			<div class="user-menu">
+				<button id="userBtn" class="icon-btn user-btn" aria-haspopup="true" aria-expanded="false">👤 <span id="userName" class="user-name">Usuario</span></button>
+				<div id="userDropdown" class="user-dropdown" aria-hidden="true">
+					<button type="button" data-action="changeName">Cambiar nombre</button>
+					<button type="button" data-action="changePassword">Cambiar contraseña</button>
+					<button type="button" data-action="changeEmail">Cambiar correo</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" data-action="logout" class="danger">Cerrar sesión</button>
+				</div>
+			</div>
+			<button id="newTaskBtn" class="btn primary">Nueva tarea</button>
+		</div>
+	</div>
+</header>
+
+<main class="container layout">
+    <aside class="sidebar">
+		<label class="field">
+			<span>Mostrar</span>
+			<select id="viewFilter">
+				<option value="active">Activas</option>
+				<option value="completed">Completadas</option>
+				<option value="all">Todas</option>
+			</select>
+		</label>
+		<label class="field">
+			<span>Categoría</span>
+			<select id="filterCategory">
+				<option value="all">Todas</option>
+				<!-- categorías dinámicas se cargarán aquí -->
+			</select>
+		</label>
+		<label class="field">
+			<span>Exportar</span>
+			<div style="display:flex;gap:8px">
+				<button id="exportVisible" class="btn">Exportar ICS (visibles)</button>
+				<button id="exportAll" class="btn">Exportar ICS (todas)</button>
+			</div>
+		</label>
+		<label class="field">
+			<span>Ordenar por</span>
+			<select id="sortBy">
+				<option value="createdDesc">Recientes</option>
+				<option value="startAsc">Inicio (asc)</option>
+				<option value="startDesc">Inicio (desc)</option>
+			</select>
+		</label>
+		<div class="spacer"></div>
+		<button id="clearAll" class="btn danger">Eliminar todas</button>
+	</aside>
+
+	<section class="content">
+		<div id="emptyState" class="empty">Aún no hay tareas. Crea una nueva tarea.</div>
+		<div id="tasks" class="tasks-grid"></div>
+	</section>
+</main>
+
+<!-- Modal / Panel para crear/editar tarea -->
+<div id="taskModal" class="modal" aria-hidden="true">
+	<div class="modal-dialog">
+		<form id="taskForm" class="form">
+			<header class="modal-header">
+				<h2 id="modalTitle">Nueva tarea</h2>
+				<button type="button" id="closeModal" class="close">✕</button>
+			</header>
+
+			<div class="form-body">
+				<label class="field"><span>Título</span><input id="title" required maxlength="120"/></label>
+				<label class="field"><span>Descripción</span><textarea id="description" rows="3"></textarea></label>
+				<div class="row">
+					<label class="field"><span>Categoría</span>
+						<select id="category">
+							<!-- dinámico -->
+						</select>
+					</label>
+					<label class="field"><span>Nueva categoría</span><input id="newCategoryInput" placeholder="Agregar categoría y presionar Enter"></label>
+				</div>
+				<label class="field"><span>Etiquetas (separadas por coma)</span><input id="tags" placeholder="ej: trabajo, urgente"></label>
+				<label class="field"><span>Subtareas / Checklist</span>
+					<div id="subtasksContainer"></div>
+					<div style="display:flex;gap:8px;margin-top:8px">
+						<input id="newSubtaskInput" placeholder="Agregar subtarea y Enter" />
+						<button type="button" id="addSubtaskBtn" class="btn">Añadir</button>
+					</div>
+				</label>
+				<div class="row">
+					<label class="field"><span>Prioridad</span>
+						<select id="priority">
+							<option value="low">Baja</option>
+							<option value="medium" selected>Media</option>
+							<option value="high">Alta</option>
+						</select>
+					</label>
+				</div>
+
+				<div class="row">
+					<label class="field"><span>Inicio</span><input id="start" type="datetime-local" required/></label>
+					<label class="field"><span>Fin</span><input id="end" type="datetime-local" required/></label>
+				</div>
+				<div class="row">
+					<label class="field"><span>Recurrencia</span>
+						<select id="recurrence">
+							<option value="none">Nunca</option>
+							<option value="daily">Diaria</option>
+							<option value="weekly">Semanal</option>
+						</select>
+					</label>
+					<label class="field"><span>Marcar como</span>
+						<select id="completedSelect">
+							<option value="false">Pendiente</option>
+							<option value="true">Completada</option>
+						</select>
+					</label>
+				</div>
+
+				<div class="row">
+					<label class="field"><span>Tipo de medición</span>
+						<select id="measurementType">
+							<option value="binary" selected>Binaria</option>
+							<option value="daily">Diaria (por días cumplidos)</option>
+							<option value="hours">Horas dedicadas</option>
+							<option value="periodGoal">Meta por periodo (semana/mes/año)</option>
+							<option value="repeatX">Repetir X veces</option>
+						</select>
+					</label>
+					<label class="field"><span>Valor objetivo</span><input id="targetValue" placeholder="ej: 10 (horas) o 5 (veces)" /></label>
+				</div>
+				<div class="row">
+					<label class="field"><span>Alcance de periodo</span>
+						<select id="periodScope">
+							<option value="week">Semanal</option>
+							<option value="month">Mensual</option>
+							<option value="year">Anual</option>
+						</select>
+					</label>
+				</div>
+
+			</div>
+
+			<footer class="modal-footer">
+				<button type="button" id="cancelBtn" class="btn">Cancelar</button>
+				<button type="submit" class="btn primary">Guardar</button>
+			</footer>
+			<input type="hidden" id="taskId" />
+		</form>
+	</div>
+</div>
+
+<!-- User settings modal (modern replacement for prompts) -->
+<div id="userModal" class="modal user-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="userSettingsForm" class="form">
+            <header class="modal-header">
+                <h2 id="userModalTitle">Ajustes de usuario</h2>
+                <button type="button" id="userModalClose" class="close">✕</button>
+            </header>
+            <div class="form-body">
+                <div class="user-tabs" style="display:flex;gap:8px;flex-wrap:wrap">
+                    <button type="button" class="btn" data-section="name">Cambiar nombre</button>
+                    <button type="button" class="btn" data-section="email">Cambiar correo</button>
+                    <button type="button" class="btn" data-section="password">Cambiar contraseña</button>
+                    <button type="button" class="btn danger" data-section="logout">Cerrar sesión</button>
+                </div>
+
+                <div class="user-section" data-section="name" style="margin-top:12px">
+                    <label class="field"><span>Nombre</span><input id="userNameInput" /></label>
+                    <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" id="saveNameBtn" class="btn primary">Guardar nombre</button></div>
+                </div>
+
+                <div class="user-section" data-section="email" style="margin-top:12px;display:none">
+                    <label class="field"><span>Correo</span><input id="userEmailInput" type="email" /></label>
+                    <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" id="saveEmailBtn" class="btn primary">Guardar correo</button></div>
+                </div>
+
+                <div class="user-section" data-section="password" style="margin-top:12px;display:none">
+                    <label class="field"><span>Contraseña actual</span><input id="currentPasswordInput" type="password" autocomplete="current-password" /></label>
+                    <label class="field"><span>Nueva contraseña</span><input id="newPasswordInput" type="password" autocomplete="new-password" /></label>
+                    <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" id="savePasswordBtn" class="btn primary">Guardar contraseña</button></div>
+                </div>
+
+                <div class="user-section" data-section="logout" style="margin-top:12px;display:none">
+                    <p>¿Deseas cerrar sesión ahora? Esto te redirigirá a la pantalla de inicio de sesión.</p>
+                    <div style="display:flex;gap:8px;justify-content:flex-end">
+                        <button type="button" id="cancelLogoutBtn" class="btn">Cancelar</button>
+                        <button type="button" id="confirmLogoutBtn" class="btn danger">Cerrar sesión</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="inicio.js"></script>
+</body>
+</html>
+
